@@ -1,35 +1,44 @@
 package com.khalil.ecommerce.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "customer")
+@Table(name = "Customer")
 public class Customer {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
-    @Column(name="Name", nullable = false, unique = true)
+    @Column(name="name", nullable = false, unique = true)
     private String name;
 
-    @Column(name="Email", nullable = false, unique = true)
+    @Column(name="email", nullable = false, unique = true)
     private String email;
 
-    @Column(name="Password", nullable = false)
+    @Column(name="password", nullable = false)
     private String password;
 
-    @Column(name="Profile Image")
+    @Column(name="profileImage")
     private String profileImage;
 
-    @Column(name = "Created At", nullable = false, updatable = false)
+    @CreatedDate
+    @Column(name = "createdAt", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "Updated At", insertable = false)
+    @LastModifiedDate
+    @Column(name = "updatedAt", insertable = false)
     public LocalDateTime updatedAt;
+
 
 }
